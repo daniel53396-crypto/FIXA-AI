@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090909">
+  <title>Fix AI — Your AI Assistant</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="loader" class="loader-screen" aria-label="Loading Fix AI">
+    <div class="loader-orbit"><div class="loader-core">F</div></div>
+    <div class="loader-brand">FIX <span>AI</span></div>
+    <div class="loader-caption">Preparing your workspace</div>
+    <div class="loader-track"><span></span></div>
+    <div class="loader-percent">LOADING <b id="loadPercent">0%</b></div>
+  </div>
+
+  <main id="app" class="app hidden">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">F</div><div><b>Fix <span>AI</span></b><small>Your creative assistant</small></div></div>
+      <button id="newChat" class="new-chat">＋ New chat</button>
+      <div class="side-label">TOOLS</div>
+      <button class="tool active" data-tool="chat">✦ <span>AI Chat</span></button>
+      <button class="tool" data-tool="image">▧ <span>Image Studio</span></button>
+      <button class="tool" data-tool="voice">◉ <span>Voice & language</span></button>
+      <div class="sidebar-bottom"><span class="status-dot"></span> Fix AI workspace <small>Preview build</small></div>
+    </aside>
+
+    <section class="main">
+      <header class="topbar">
+        <div><div class="eyebrow">YOUR PERSONAL ASSISTANT</div><h1 id="pageTitle">Chat with Fix AI</h1></div>
+        <div class="top-actions"><select id="language" aria-label="Language">
+          <option value="auto">Auto language</option><option value="en-US">English</option><option value="ta-IN">தமிழ்</option><option value="hi-IN">हिन्दी</option><option value="si-LK">සිංහල</option><option value="es-ES">Español</option><option value="fr-FR">Français</option><option value="ar-SA">العربية</option><option value="bn-IN">বাংলা</option>
+        </select><div class="avatar">F</div></div>
+      </header>
+
+      <section id="chatView" class="view chat-view">
+        <div id="welcome" class="welcome">
+          <div class="welcome-emblem">✦</div>
+          <div class="gold-kicker">HELLO, I'M FIX AI</div>
+          <h2>What can we create<br><span>together today?</span></h2>
+          <p>Ask a question, write in your language, upload an image, or use your voice.</p>
+          <div class="suggestions">
+            <button data-prompt="Explain something difficult in simple words.">✧ <span>Explain a topic</span><small>Make it easy to understand</small></button>
+            <button data-prompt="Help me write a creative social media caption.">✎ <span>Write something</span><small>Ideas, captions and messages</small></button>
+            <button data-prompt="Give me ideas for editing an image.">▧ <span>Image ideas</span><small>Improve a photo or design</small></button>
+          </div>
+        </div>
+        <div id="messages" class="messages" aria-live="polite"></div>
+        <div class="composer-wrap">
+          <div id="attachmentPreview" class="attachment-preview hidden"></div>
+          <div class="composer">
+            <label class="icon-btn attach-btn" title="Upload image">＋<input id="imageInput" type="file" accept="image/*" hidden></label>
+            <textarea id="prompt" rows="1" placeholder="Message Fix AI…"></textarea>
+            <button id="voiceInput" class="icon-btn" title="Speak your message">🎙</button>
+            <button id="sendBtn" class="send-btn" aria-label="Send message">➤</button>
+          </div>
+          <div class="composer-note"><span id="micStatus">Enter to send · Shift+Enter for a new line</span><span>Fix AI can make mistakes. Check important information.</span></div>
+        </div>
+      </section>
+
+      <section id="imageView" class="view image-view hidden">
+        <div class="section-intro"><div class="gold-kicker">CREATIVE WORKSPACE</div><h2>Image Studio</h2><p>Upload an image, rename it, adjust the look, and save an edited copy.</p></div>
+        <div class="studio-card">
+          <label class="upload-zone" id="dropZone"><span class="upload-icon">↥</span><b>Choose an image</b><span>Tap to upload · JPG, PNG, WEBP</span><input id="studioInput" type="file" accept="image/*" hidden></label>
+          <div id="editor" class="editor hidden">
+            <div class="image-stage"><img id="studioImage" alt="Image preview"></div>
+            <label class="field-label">File name <input id="imageName" type="text" value="fix-ai-edit"></label>
+            <div class="filters">
+              <label>Brightness <input id="brightness" type="range" min="50" max="150" value="100"></label>
+              <label>Contrast <input id="contrast" type="range" min="50" max="160" value="100"></label>
+              <label>Saturation <input id="saturation" type="range" min="0" max="180" value="100"></label>
+            </div>
+            <div class="studio-actions"><button id="resetImage" class="secondary-btn">Reset</button><button id="downloadImage" class="primary-btn">Save edited image ↓</button></div>
+            <p class="small-note">These local edits apply basic visual filters. AI-powered image generation or object removal is not included in this starter build.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="voiceView" class="view voice-view hidden">
+        <div class="section-intro"><div class="gold-kicker">SPEAK NATURALLY</div><h2>Voice & language</h2><p>Talk to Fix AI using your device's speech recognition, then listen to answers aloud.</p></div>
+        <div class="voice-card"><div class="voice-orb">♫</div><h3>Talk to Fix AI</h3><p>Choose your language at the top, then use the microphone beside the chat box. Browser and device support may vary.</p><button id="startVoice" class="primary-btn">🎙 Start voice input</button><button id="speakLast" class="secondary-btn">▶ Read last answer aloud</button><div id="voiceHelp" class="small-note">Voice input uses the browser's Speech Recognition feature when available. It may require internet and microphone permission.</div></div>
+      </section>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
